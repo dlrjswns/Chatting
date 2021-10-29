@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Firebase
+import TextFieldEffects
 
 class RootViewController:UIViewController{
     
@@ -15,8 +16,8 @@ class RootViewController:UIViewController{
     lazy var imageView:UIImageView={
         let imageView = UIImageView()
         imageView.image = UIImage(named: "talk.png")
-        imageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -43,7 +44,6 @@ class RootViewController:UIViewController{
           }
           self.displayWelcome()
         }
-
     }
     
     func displayWelcome(){
@@ -56,13 +56,17 @@ class RootViewController:UIViewController{
             print("displayWelcome()-caps")
             let alert = UIAlertController(title: "공지사항", message: message, preferredStyle: UIAlertController.Style.alert)
             let positive = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: {action in
-//                exit(0) 앱이 꺼짐
+                exit(0) //앱이 꺼짐
             })
             alert.addAction(positive)
             self.present(alert, animated: true, completion: nil)
         }
         print("displayWelcome()-nocaps")
-        self.view.backgroundColor = .blue
+        let vc = LoginViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
+        self.present(vc, animated: true, completion: nil)
+    
     }
     
     //MARK: -Configure

@@ -9,6 +9,7 @@ target 'Chatting' do
  pod 'SnapKit', '~> 5.0.0'
 pod 'Firebase/Analytics'
 pod 'Firebase/RemoteConfig'
+pod 'TextFieldEffects'
 
   target 'ChattingTests' do
     inherit! :search_paths
