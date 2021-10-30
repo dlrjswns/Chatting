@@ -12,7 +12,7 @@ class LoginViewController:UIViewController{
     lazy var statusView:UIView={
         let vw = UIView()
         vw.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        vw.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        vw.heightAnchor.constraint(equalToConstant: 20).isActive = true
         vw.backgroundColor = .systemPink
         return vw
     }()
@@ -62,7 +62,7 @@ class LoginViewController:UIViewController{
         return button
     }()
     
-    lazy var pwdButton:UIButton={
+    lazy var signupButton:UIButton={
         let button = UIButton(type: UIButton.ButtonType.system)
         button.setTitle("회원가입", for: UIControl.State.normal)
         button.widthAnchor.constraint(equalToConstant: 200).isActive = true
@@ -72,12 +72,20 @@ class LoginViewController:UIViewController{
         button.layer.cornerRadius = 10
         button.tintColor = .white
         button.backgroundColor = .systemPink
+        button.addTarget(self, action: #selector(signupTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+    }
+    //MARK: -Objc
+    @objc func signupTapped(){
+        let vc = SignupViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
+        self.present(vc, animated: true, completion: nil)
     }
     
     //MARK: -Configure
@@ -104,10 +112,10 @@ class LoginViewController:UIViewController{
         loginButton.centerXAnchor.constraint(equalTo: pwdtextField.centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: pwdtextField.bottomAnchor, constant: 20).isActive = true
         
-        view.addSubview(pwdButton)
-        pwdButton.translatesAutoresizingMaskIntoConstraints = false
-        pwdButton.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor).isActive = true
-        pwdButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
+        view.addSubview(signupButton)
+        signupButton.translatesAutoresizingMaskIntoConstraints = false
+        signupButton.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor).isActive = true
+        signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
         
         view.addSubview(statusView)
         statusView.translatesAutoresizingMaskIntoConstraints = false

@@ -10,6 +10,8 @@ target 'Chatting' do
 pod 'Firebase/Analytics'
 pod 'Firebase/RemoteConfig'
 pod 'TextFieldEffects'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
 
   target 'ChattingTests' do
     inherit! :search_paths
