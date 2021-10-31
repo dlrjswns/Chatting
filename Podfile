@@ -12,6 +12,7 @@ pod 'Firebase/RemoteConfig'
 pod 'TextFieldEffects'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 
   target 'ChattingTests' do
     inherit! :search_paths
