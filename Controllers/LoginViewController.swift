@@ -7,6 +7,7 @@
 
 import UIKit
 import TextFieldEffects
+import FirebaseAuth
 
 class LoginViewController:UIViewController{
     lazy var statusView:UIView={
@@ -59,6 +60,7 @@ class LoginViewController:UIViewController{
         button.layer.cornerRadius = 10
         button.tintColor = .white
         button.backgroundColor = .systemPink
+        button.addTarget(self, action: #selector(loginTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
     
@@ -79,6 +81,8 @@ class LoginViewController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        successLogin()
+        try! Auth.auth().signOut()
     }
     //MARK: -Objc
     @objc func signupTapped(){
@@ -86,6 +90,17 @@ class LoginViewController:UIViewController{
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .flipHorizontal
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func loginTapped(){
+        Auth.auth().signIn(withEmail: idtextField.text!, password: pwdtextField.text!) { user, error in
+            if error != nil{
+                let alert = UIAlertController(title: "로그인 실패", message: "아이디나 패스워드가 일치하지않습니다", preferredStyle: UIAlertController.Style.alert)
+                let positive = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                alert.addAction(positive)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     //MARK: -Configure
@@ -121,5 +136,14 @@ class LoginViewController:UIViewController{
         statusView.translatesAutoresizingMaskIntoConstraints = false
         statusView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         statusView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    }
+    
+    func successLogin(){
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil{
+                let vc = MainViewController()
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
 }
