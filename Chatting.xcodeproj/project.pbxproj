@@ -28,6 +28,8 @@
 		702E9C54273106EF008CA43B /* account.png in Resources */ = {isa = PBXBuildFile; fileRef = 702E9C53273106EF008CA43B /* account.png */; };
 		702E9C5627310704008CA43B /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 702E9C5527310704008CA43B /* chat.png */; };
 		702E9C582731070C008CA43B /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 702E9C572731070C008CA43B /* user.png */; };
+		702E9C5B2733ACDC008CA43B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E9C5A2733ACDC008CA43B /* UserModel.swift */; };
+		702E9C5E2733AEDB008CA43B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E9C5D2733AEDB008CA43B /* TableViewCell.swift */; };
 		B3E439956BE958EC47EE926A /* Pods_ChattingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AC850F3E72D497BA85ED14 /* Pods_ChattingTests.framework */; };
 		DC192BA33AAA89AD9EBB16DB /* Pods_Chatting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E9DF1B943D152803B4222 /* Pods_Chatting.framework */; };
 		E665754998D90714A96057FE /* Pods_Chatting_ChattingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3769FBE16C632A9F3D6D67 /* Pods_Chatting_ChattingUITests.framework */; };
@@ -83,6 +85,8 @@
 		702E9C53273106EF008CA43B /* account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account.png; sourceTree = "<group>"; };
 		702E9C5527310704008CA43B /* chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat.png; sourceTree = "<group>"; };
 		702E9C572731070C008CA43B /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		702E9C5A2733ACDC008CA43B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		702E9C5D2733AEDB008CA43B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		799F11A74E6DF7204BD12E60 /* Pods-Chatting-ChattingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatting-ChattingUITests.debug.xcconfig"; path = "Target Support Files/Pods-Chatting-ChattingUITests/Pods-Chatting-ChattingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F3769FBE16C632A9F3D6D67 /* Pods_Chatting_ChattingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatting_ChattingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF964AB81B412089CF3E364 /* Pods-ChattingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChattingTests.release.xcconfig"; path = "Target Support Files/Pods-ChattingTests/Pods-ChattingTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		702E9BB3272A0860008CA43B = {
 			isa = PBXGroup;
 			children = (
+				702E9C5C2733AED3008CA43B /* Cells */,
+				702E9C592733ACD0008CA43B /* Models */,
 				702E9BF4272A0FC4008CA43B /* Images */,
 				702E9BF1272A0E63008CA43B /* Controllers */,
 				702E9BBE272A0860008CA43B /* Chatting */,
@@ -198,6 +204,22 @@
 				702E9BF5272A0FCF008CA43B /* talk.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		702E9C592733ACD0008CA43B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				702E9C5A2733ACDC008CA43B /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		702E9C5C2733AED3008CA43B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				702E9C5D2733AEDB008CA43B /* TableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		94276D649ED00992B4C071B8 /* Frameworks */ = {
@@ -474,8 +496,10 @@
 				702E9BC0272A0860008CA43B /* AppDelegate.swift in Sources */,
 				702E9C46272D5517008CA43B /* SignupViewController.swift in Sources */,
 				702E9BC2272A0860008CA43B /* SceneDelegate.swift in Sources */,
+				702E9C5E2733AEDB008CA43B /* TableViewCell.swift in Sources */,
 				702E9C4C2730FFEE008CA43B /* MainViewController.swift in Sources */,
 				702E9BF3272A0E6E008CA43B /* RootViewController.swift in Sources */,
+				702E9C5B2733ACDC008CA43B /* UserModel.swift in Sources */,
 				702E9C52273104AA008CA43B /* AccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

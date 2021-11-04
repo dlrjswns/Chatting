@@ -29,13 +29,13 @@ class MainViewController:UITabBarController{
         account.title = "Account"
         
         self.setViewControllers([people, chat, account], animated: true)
-        self.tabBar.clipsToBounds = true
         
         guard let items = self.tabBar.items else {return}
-        let images = ["user.png", "chat.png", "account.png"]
         
+        let images = ["person.fill", "message.fill", "person.circle"]
         for a in 0..<items.count{
-            items[a].image = UIImage(named: images[a])
+//            items[a].image = UIImage(named: images[a])
+            items[a].image = UIImage(systemName: images[a])
         }
     }
 }
