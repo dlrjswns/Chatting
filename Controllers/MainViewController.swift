@@ -20,7 +20,7 @@ class MainViewController:UITabBarController{
     }
     
     func makeTabbar(){
-        let people = PeopleViewController()
+        let people = UINavigationController(rootViewController: PeopleViewController())
         let chat = ChatViewController()
         let account = AccountViewController()
         

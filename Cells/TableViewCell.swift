@@ -14,6 +14,7 @@ class TableViewCell:UITableViewCell{
         imgView.widthAnchor.constraint(equalToConstant: self.frame.height).isActive = true
         imgView.layer.cornerRadius = self.frame.height/2
         imgView.backgroundColor = .systemBackground
+        imgView.clipsToBounds = true
         return imgView
     }()
     

@@ -142,6 +142,7 @@ class LoginViewController:UIViewController{
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil{
                 let vc = MainViewController()
+                vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
             }
         }

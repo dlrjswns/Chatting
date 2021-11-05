@@ -12,6 +12,14 @@ private let tableViewIdentifier = "cell"
 class PeopleViewController:UITableViewController{
     var array = [UserModel]()
     
+//    lazy var utilityView:UIView={
+//       let vw = UIView()
+//        vw.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+//        vw.backgroundColor = .systemBackground
+//        return vw
+//    }()
+    //tableView에 Cell이 존재하지않는곳을 가리는 view
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,16 +30,11 @@ class PeopleViewController:UITableViewController{
             self.array.removeAll()
             
             for child in snapshot.children{
-                print(self.array)
                 let fchild = child as! DataSnapshot
-                print("fchild:\(fchild)")
                 let userModel = UserModel()
-                print("userModel:\(userModel)")
                 
                 userModel.setValuesForKeys(fchild.value as! [String : Any])
-                print("usermomo:\(userModel)")
                 self.array.append(userModel)
-                print(self.array)
             }
             print(self.array)
             DispatchQueue.main.async {
@@ -57,15 +60,33 @@ extension PeopleViewController{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIdentifier, for: indexPath) as! TableViewCell
         
-        URLSession.shared.dataTask(with: URL(string: array[indexPath.row].imageURL!)!) { data, response, error in
-            
-            DispatchQueue.main.async {
-                print("imageloading")
-                cell.imgView.image = UIImage(data: data!)
-            }
-           
-        }
+//        URLSession.shared.dataTask(with: URL(string: array[indexPath.row].imageURL!)!) { data, response, error in
+//
+//            DispatchQueue.main.async {
+//                print("data:\(data)")
+//                cell.imgView.image = UIImage(data: data!)
+//                print("imageloading")
+//            }
+//
+//        }
+        let url:URL! = URL(string: array[indexPath.row].imageURL!)
+        let data = try! Data(contentsOf: url)
+        DispatchQueue.main.async {
+                       print("data:\(data)")
+                       cell.imgView.image = UIImage(data: data)
+                       print("imageloading")
+                   }
         cell.nameLabel.text = array[indexPath.row].name
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChatViewController()
+        vc.destinationUid = self.array[indexPath.row].uid
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

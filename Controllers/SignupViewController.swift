@@ -116,7 +116,7 @@ class SignupViewController:UIViewController{
             let imageRef = Storage.storage().reference().child("userImage").child(uid)
             imageRef.putData(data, metadata: nil) { StorageMetadata, Error in
                 imageRef.downloadURL { URL, Error in
-                    Database.database().reference().child("user").child(uid).setValue(["name" : nameText, "imageURL" : URL?.absoluteString])
+                    Database.database().reference().child("user").child(uid).setValue(["name" : nameText, "imageURL" : URL?.absoluteString, "uid":Auth.auth().currentUser?.uid])
                 }
             }
             self.dismiss(animated: true) {
