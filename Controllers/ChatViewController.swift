@@ -10,11 +10,12 @@ import Firebase
 
 class ChatViewController:UIViewController{
     var destinationUid:String? //내가 채팅할 대상의 uid
+    var uid:String?
+    var chatRoomUid:String?
     
     lazy var button:UIButton={
         let btn = UIButton(type: UIButton.ButtonType.system)
         btn.setTitle("전송", for: UIControl.State.normal)
-        btn.addTarget(self, action: #selector(btnTapped), for: UIControl.Event.touchUpInside)
         return btn
     }()
     
@@ -29,7 +30,10 @@ class ChatViewController:UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        uid = Auth.auth().currentUser?.uid
+        button.addTarget(self, action: #selector(btnTapped), for: UIControl.Event.touchUpInside)
         configure()
+        checkChatRoom()
     }
     
     //MARK: -Configure
@@ -49,9 +53,27 @@ class ChatViewController:UIViewController{
     
     //MARK: -@objc
     @objc func btnTapped(){
-        let createRoomInfo = ["uid":Auth.auth().currentUser?.uid,
-                              "destinationUid":destinationUid]
+        let createRoomInfo = [ "users" : [
+            uid : true,
+            destinationUid : true
+        ] ]
+        if (chatRoomUid == nil){
+            Database.database().reference().child("chatrooms").childByAutoId().setValue(createRoomInfo)
+        }else{
+            let value = ["comments":[
+                "uid":uid!,
+                "message":txtField.text!
+            ]]
+            Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value)
+        }
         
-        Database.database().reference().child("chatrooms").childByAutoId().setValue(createRoomInfo)
+    }
+    
+    func checkChatRoom(){
+        Database.database().reference().child("chatrooms").queryOrdered(byChild: "users/"+uid!).queryEqual(toValue: true).observeSingleEvent(of: DataEventType.value) { [self] datasnapshot in
+            for item in datasnapshot.children.allObjects as! [DataSnapshot]{
+                chatRoomUid = item.key
+            }
+        }
     }
 }

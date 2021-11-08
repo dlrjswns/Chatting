@@ -8,6 +8,11 @@
 import UIKit
 
 class ChatModel:NSObject{
-    var uid:String?
-    var destinationUid:String?
+    var users = [String:Bool]() //채팅방에 참여한 사람들
+    var comments = [String:Comment]() //채팅방의 대화내용
+    
+    class Comment{
+        var uid:String?
+        var message:String?
+    }
 }
